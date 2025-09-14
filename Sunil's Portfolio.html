@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunil Kumar - Portfolio</title>
+  <style>
+    /* BASIC STYLING */
+    body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:#f2f2f2;color:#333}
+    header{background:#333;color:#fff;text-align:center;padding:1.5rem 1rem;position:sticky;top:0;z-index:100}
+    nav a{margin:0 10px;color:#fff;text-decoration:none;font-weight:600;transition:opacity .2s}
+    nav a:hover{opacity:.7}
+    section{padding:3rem 1rem}
+    h1,h2{margin:.5rem 0}
+
+    /* HERO WITH TYPING EFFECT */
+    #hero{background:#0a84ff;color:#fff;text-align:center;padding:4rem 1rem}
+    #hero h1{font-size:2.2rem;margin-bottom:.5rem}
+    #typing{display:inline-block;border-right:3px solid #fff;padding-right:3px;animation:blink .7s steps(1) infinite}
+    @keyframes blink{50%{border-color:transparent}}
+
+    /* PROJECT CARDS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+    .project{background:#fff;border-radius:8px;padding:1rem;box-shadow:0 2px 6px rgba(0,0,0,.1);transition:transform .2s,box-shadow .2s}
+    .project:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+
+    /* CONTACT FORM */
+    .contact-form{background:#fff;border-radius:8px;padding:1rem;max-width:500px;margin:auto}
+    input,textarea{width:100%;padding:.6rem;border:1px solid #ccc;border-radius:4px;margin:.4rem 0}
+    button{background:#333;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;transition:background .2s}
+    button:hover{background:#555}
+
+    /* SOCIAL ICONS */
+    .socials{margin-top:1rem}
+    .socials a{display:inline-block;margin:0 .4rem;font-size:1.4rem;color:#333;transition:color .2s}
+    .socials a:hover{color:#0a84ff}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sunil Kumar</h1>
+    <p>Web Developer | IT Student</p>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION WITH TYPING EFFECT -->
+  <section id="hero">
+    <h1>Hello, I'm <span id="typing"></span></h1>
+    <p>I build simple and effective web solutions.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a 2nd‑year B.Tech IT student passionate about front‑end development. I love working with HTML, CSS, and JavaScript to turn ideas into interactive sites.</p>
+    <div class="socials">
+      <a href="https://github.com" aria-label="GitHub">🐱‍💻</a>
+      <a href="https://linkedin.com" aria-label="LinkedIn">💼</a>
+      <a href="mailto:example@mail.com" aria-label="Email">✉️</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <h3>Mindful Pomodoro</h3>
+        <p>A simple timer app to boost productivity using the Pomodoro technique.</p>
+      </div>
+      <div class="project">
+        <h3>Expense Tracker</h3>
+        <p>Java-based app to track and categorize your daily expenses.</p>
+      </div>
+      <div class="project">
+        <h3>Digital Career Counseling</h3>
+        <p>Platform that recommends career paths based on interests.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form class="contact-form" onsubmit="return handleSubmit(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    // Typing effect
+    const words=["Sunil","a Developer","an IT Student"];
+    let i=0,j=0,current="",isDeleting=false,typingEl=document.getElementById("typing");
+    function type(){
+      if(i<words.length){
+        if(!isDeleting && j<=words[i].length){
+          current=words[i].slice(0,j++);
+        }
+        if(isDeleting && j>=0){
+          current=words[i].slice(0,j--);
+        }
+        typingEl.textContent=current;
+        if(j===words[i].length){isDeleting=true;setTimeout(type,800);return}
+        if(j===0&&isDeleting){isDeleting=false;i++;}
+      }else{i=0}
+      setTimeout(type,120);
+    }
+    type();
+
+    // Form handler
+    function handleSubmit(e){e.preventDefault();alert('Thank you! Message sent.');e.target.reset();}
+  </script>
+</body>
+</html>
